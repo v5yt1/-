@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الهدايا الفضائية ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- خلفيات الأنيميشن والنجوم -->
+    <div id="stars-container"></div>
+    <div id="floating-elements"></div>
+
+    <!-- 1. واجهة تصميم الهدية -->
+    <div id="builderView" class="glass-card">
+        <div class="card-header">
+            <span class="badge">صانع الهدايا التفاعلي 🚀</span>
+            <h1>صمّم كارت هديتك بنفسك</h1>
+        </div>
+
+        <form id="giftForm" onsubmit="generateLink(event)">
+            <div class="input-group">
+                <label>اسم أو حرف الشخص العزيز 💜</label>
+                <input type="text" id="inputName" placeholder="مثال: بيسن" required>
+            </div>
+
+            <div class="input-group">
+                <label>رسالتك الخاصة ✍️</label>
+                <textarea id="inputMessage" placeholder="اكتب كلامك الحلو هنا..." rows="3" required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>كلمات الأغنية للتطائر بالخلفية 🎵</label>
+                <input type="text" id="inputLyrics" placeholder="اكتب الكلمات تفصل بينها مسافة (مثل: انت العمر انت السنين)..." required>
+            </div>
+
+            <div class="input-group">
+                <label>اختر الأغنية المحلية 🎶</label>
+                <select id="audioSelect" style="width: 100%; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(189, 147, 249, 0.3); border-radius: 12px; padding: 10px; color: #fff; font-size: 0.9rem; outline: none;">
+                    <option value="song1.mp3" selected style="background: #120a20; color: #fff;">الأغنية الأولى (song1.mp3)</option>
+                    <option value="song2.mp3" style="background: #120a20; color: #fff;">الأغنية الثانية (song2.mp3)</option>
+                    <option value="song3.mp3" style="background: #120a20; color: #fff;">الأغنية الثالثة (song3.mp3)</option>
+                </select>
+            </div>
+
+            <hr class="divider">
+
+            <!-- قسم الأسئلة المتعددة والردود -->
+            <div class="questions-builder">
+                <label class="section-label">الأسئلة التفاعلية والردود 🫣</label>
+                <div id="questionsContainer"></div>
+                <button type="button" onclick="addQuestionField()" class="add-q-btn">+ إضافة سؤال جديد</button>
+            </div>
+
+            <button type="submit" class="neon-btn">إنشاء الرابط السحري 🪄</button>
+        </form>
+
+        <div id="resultArea" class="result-box hidden">
+            <p>الرابط جاهز! انسخه وأرسله لمن تحب 👇</p>
+            <div class="copy-wrapper">
+                <input type="text" id="generatedLink" readonly>
+                <button onclick="copyLink()" class="copy-btn">نسخ 📋</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. واجهة المستلم (عرض الهدية) -->
+    <div id="giftView" class="glass-card gift-mode hidden">
+        <div class="gift-header">
+            <div class="big-letter" id="letterDisplay">💜</div>
+            <h1>إلى: <span id="displayName" class="neon-text"></span></h1>
+        </div>
+
+        <p id="displayMessage" class="glass-message"></p>
+
+        <!-- مشغل الصوت المحلي -->
+        <div class="audio-box">
+            <audio id="mainAudio" controls loop autoplay>
+                <source id="audioSource" src="song1.mp3" type="audio/mp3">
+                متصفحك لا يدعم تشغيل الصوت.
+            </audio>
+        </div>
+
+        <!-- عرض الأسئلة التفاعلية -->
+        <div id="displayQuestionsBox" class="quiz-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
